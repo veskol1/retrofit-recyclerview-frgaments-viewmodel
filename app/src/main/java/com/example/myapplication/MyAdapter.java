@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +15,7 @@ import java.util.ArrayList;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     private ArrayList<Result> arrayList;
-
+    //private final Context context;
     public MyAdapter(ArrayList<Result> arrayList){
 
         this.arrayList = arrayList ;
@@ -30,6 +32,15 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
           holder.textView.setText(arrayList.get(position).getTitle());
+
+          holder.textView.setOnClickListener(new View.OnClickListener() {
+              @Override
+              public void onClick(View v) {
+                  Intent intent = new Intent(holder.context,SecondActivity.class);
+                  holder.context.startActivity(intent);
+              }
+          });
+
 //        Retrofit retrofit = new Retrofit.Builder()
 //                .baseUrl("https://api.themoviedb.org/")
 //                .addConverterFactory(GsonConverterFactory.create())
@@ -76,10 +87,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
+        private final Context context;
 
         private TextView textView;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
+            context = itemView.getContext();
             textView = itemView.findViewById(R.id.text_view);
         }
     }
