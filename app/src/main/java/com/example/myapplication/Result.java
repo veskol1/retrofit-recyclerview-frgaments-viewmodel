@@ -1,6 +1,8 @@
 package com.example.myapplication;
 
-public class Result {
+import java.io.Serializable;
+
+public class Result implements Serializable {
     private String title;
     private String overview;
 

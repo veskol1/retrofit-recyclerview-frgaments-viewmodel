@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,6 +38,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
               @Override
               public void onClick(View v) {
                   Intent intent = new Intent(holder.context,SecondActivity.class);
+//                  Bundle bundle = new Bundle();
+//                  bundle.putSerializable("LIST",arrayList);
+//                  intent.putExtra("LIST1",arrayList);
+//                  intent.putExtras(bundle);
                   holder.context.startActivity(intent);
               }
           });
